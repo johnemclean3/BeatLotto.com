@@ -1,0 +1,125 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #0f1117;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      background: #181c25;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+
+    .label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      color: #b8c0d4;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      outline: none;
+      border-radius: 12px;
+      background: #252b38;
+      color: white;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    input::placeholder {
+      color: #7d8597;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: #6c63ff;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    button:hover {
+      background: #7c74ff;
+      transform: translateY(-2px);
+    }
+
+    .tickets {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .button-row button {
+      flex: 1;
+    }
+
+    button.clear {
+      background: #3a3f4c;
+    }
+
+    button.clear:hover {
+      background: #4a4f5c;
+      transform: translateY(-2px);
+    }
+
+    .ticket {
+      background: #252b38;
+      border-radius: 14px;
+      padding: 15px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 300ms ease, transform 300ms ease;
+    }
+
+    .ticket.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .ticket-title {
+      font-size: 0.9rem;
+      color: #9aa4bf;
+      margin-bottom: 8px;
+    }
+
+    .numbers {
+      font-size: 1.2rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
