@@ -1,74 +1,49 @@
 function isValidCombo(combo) {
 
-	// --- Consecutive checks ---
-	let consecPairs = 0;
-	let i = 0;
+	// --- Rule 1: Reject 4+ consecutive numbers ---
+	let consecutiveCount = 1;
 
-	while (i < 5) {
-		let length = 1;
+	for (let i = 1; i < combo.length; i++) {
 
-		while (i + 1 < 6 && combo[i + 1] === combo[i] + 1) {
-			length += 1;
-			i += 1;
+		if (combo[i] === combo[i - 1] + 1) {
+			consecutiveCount++;
+
+			if (consecutiveCount >= 4) {
+				return false;
+			}
+		} else {
+			consecutiveCount = 1;
 		}
-
-		// Block runs of 3+
-		if (length >= 3) {
-			return false;
-		}
-
-		// Count pairs
-		if (length === 2) {
-			consecPairs += 1;
-		}
-
-		i += 1;
 	}
 
-	// More than one consecutive pair
-	if (consecPairs > 1) {
+	// --- Rule 2: Reject all odd or all even ---
+	let oddCount = 0;
+
+	for (const num of combo) {
+
+		if (num % 2 !== 0) {
+			oddCount++;
+		}
+	}
+
+	if (oddCount === 0 || oddCount === combo.length) {
 		return false;
 	}
 
+	// --- Rule 3: Reject arithmetic sequences ---
+	const gap = combo[1] - combo[0];
+	let isArithmetic = true;
 
-	// --- Multiples checks ---
-	let multiplePairs = 0;
-	const n = combo.length;
+	for (let i = 2; i < combo.length; i++) {
 
-	for (let i = 0; i < n; i++) {
-
-		for (let j = i + 1; j < n; j++) {
-
-			const a = combo[i];
-			const b = combo[j];
-
-			// Avoid divide by zero
-			if (a !== 0 && b % a === 0) {
-
-				let count = 2;
-
-				for (let k = j + 1; k < n; k++) {
-
-					if (combo[k] % a === 0) {
-						count += 1;
-					}
-				}
-
-				// Block 3+ multiples
-				if (count >= 3) {
-					return false;
-				}
-
-				// Count pairs
-				if (count === 2) {
-					multiplePairs += 1;
-
-					if (multiplePairs > 1) {
-						return false;
-					}
-				}
-			}
+		if (combo[i] - combo[i - 1] !== gap) {
+			isArithmetic = false;
+			break;
 		}
+	}
+
+	if (isArithmetic) {
+		return false;
 	}
 
 	return true;
