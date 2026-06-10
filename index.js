@@ -56,9 +56,10 @@ function getRandomTicket() {
 
 		const numbers = [];
 
-		while (numbers.length < 6) {
+		// Generate 5 main numbers (1-58)
+		while (numbers.length < 5) {
 
-			const next = Math.floor(Math.random() * 49) + 1;
+			const next = Math.floor(Math.random() * 58) + 1;
 
 			if (!numbers.includes(next)) {
 				numbers.push(next);
@@ -67,12 +68,19 @@ function getRandomTicket() {
 
 		const sorted = numbers.sort((a, b) => a - b);
 
-		// Only return valid combos
+		// Apply filtering algorithm to main numbers only
 		if (isValidCombo(sorted)) {
 
-			return sorted
-				.map((n) => n.toString().padStart(2, '0'))
-				.join(' ');
+			// Generate Life Ball (1-5)
+			const lifeBall = Math.floor(Math.random() * 5) + 1;
+
+			return (
+				sorted
+					.map((n) => n.toString().padStart(2, '0'))
+					.join(' ') +
+				' | LB ' +
+				lifeBall
+			);
 		}
 	}
 }
